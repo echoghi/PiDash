@@ -1,0 +1,13 @@
+{
+  "name": "PiDash",
+  "version": "1.0.0",
+  "description": "A dashboard for Raspberry pi",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emile Choghi",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
