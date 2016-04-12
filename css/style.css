@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+html {
+  text-align: center;
+}
+
+#weather {
+  height: 50%;
+  background: #20919c;
+  width: 33.3%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#weather-title {
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#weather-main {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#weather-subhead {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#forecast {
+  margin-left: 5px;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+
+#day1 {
+  margin-left: 5px;
+  width: 15%;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+#day2 {
+  margin-left: 10px;
+  width: 15%;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+#day3 {
+  margin-left: 10px;
+  width: 15%;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+#day4 {
+  margin-left: 20px;
+  width: 15%;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+#day5 {
+  margin-left: 10px;
+  width: 15%;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  float: left;
+}
+
+.max {
+  color: #FFF;
+}
+
+#reddit-photos {
+  height: 50%;
+  width: 66.7%;
+  position: fixed;
+  color: #FFF;
+  background-color: #000;
+  right: 0;
+  top: 0;
+}
+
+#earthporn {
+  height: 90%;
+  width: 100%;
+}
+
+#reddit-subhead {
+  font-size: 10px;
+}
+
+#news {
+  height: 50%;
+  width: 33.3%;
+  position: fixed;
+  background-color: #eb4457;
+  left: 0;
+  bottom: 0;
+}
+
+#news-header {
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#stories {
+  width: 90%;
+  margin-left: 15px;
+  font-size: 10px;
+  text-align: left;
+}
+
+#story-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+#details {
+  font-size: 9px;
+  margin-left: 5px;
+  text-align: right;
+}
+
+#percent{
+  font-size: 40px;
+}
+
+#ethereum {
+  height: 50.05%;
+  width: 33.4%;
+  position: fixed;
+  background: #ff8700;
+  transform: translate(-50%, 50%);
+  left: 50%;
+  right: 0;
+  bottom: 25%;
+}
+
+#stats > li{
+  text-align: left;
+  margin-top: 10px;
+}
+
+#eth{
+  height: 100px;
+  width: 100px;
+}
+
+#ethereum-header {
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#clock {
+  height: 50%;
+  width: 33.3%;
+  position: fixed;
+  background: grey;
+  right: 0;
+  bottom: 0;
+}
+
+#time {
+  margin-top: 35%;
+  font-family: Raleway;
+  color: #7FFF00;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+#night,
+#day {
+  position: fixed;
+  top: 55%;
+  left: 78%;
+}
