@@ -21,6 +21,7 @@
  {{weather.list[0].weather[0].description}} with a high of {{max}} and a low of {{min}}
       </span>
     </p>
+    <br>
     <div id="forecast">
       <div id="day1">
         {{forecastDay1}}
@@ -90,6 +91,7 @@
     <p id="percent">${{price}}
       <span id="change">({{ether.change}}%)<span>
     </p>
+    <br>
     <p id="stats">
       <li>Market Capitalization: ${{market_cap}}</li>
       <li>Available Supply: {{supply}} Eth</li>
@@ -108,6 +110,6 @@
 </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
-    <script src="js/index.js"></script>  
+    <script src="js/index.js"></script>
   </body>
 </html>
