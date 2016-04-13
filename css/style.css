@@ -26,10 +26,11 @@ html {
 #weather-subhead {
   font-size: 13px;
   font-weight: bold;
+  text-align: center;
 }
 
 #forecast {
-  margin-left: 5px;
+  margin-left: 20px;
   width: 100%;
   font-weight: bold;
   text-align: center;
@@ -64,7 +65,7 @@ html {
 }
 
 #day4 {
-  margin-left: 20px;
+  margin-left: 10px;
   width: 15%;
   font-weight: bold;
   text-align: center;
