@@ -41,10 +41,10 @@
       $scope.max3 = Math.floor(data.list[2].temp.max * 9 / 5 - 459.67);
       $scope.min4 = Math.floor(data.list[3].temp.min * 9 / 5 - 459.67);
       $scope.max4 = Math.floor(data.list[3].temp.max * 9 / 5 - 459.67);
-      $scope.min5 = Math.floor(data.list[3].temp.min * 9 / 5 - 459.67);
-      $scope.max5 = Math.floor(data.list[3].temp.max * 9 / 5 - 459.67);
-      $scope.min6 = Math.floor(data.list[4].temp.min * 9 / 5 - 459.67);
-      $scope.max6 = Math.floor(data.list[4].temp.max * 9 / 5 - 459.67);
+      $scope.min5 = Math.floor(data.list[4].temp.min * 9 / 5 - 459.67);
+      $scope.max5 = Math.floor(data.list[4].temp.max * 9 / 5 - 459.67);
+      $scope.min6 = Math.floor(data.list[5].temp.min * 9 / 5 - 459.67);
+      $scope.max6 = Math.floor(data.list[5].temp.max * 9 / 5 - 459.67);
     })
 
   }])
