@@ -19,7 +19,7 @@
       $scope.max6;
 
     // Get the Day
-    var days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+    var days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
     var d = new Date;
     var n = d.getDay();
 
@@ -99,7 +99,7 @@
         currentHr = currentDate.getHours();
       if (currentHr == 00) { //if midnight (00 hours) hour = 12
         currentHr = 12;
-      } else if (currentHr >= 13) { //convert military hours at and over 1300 (1pm) to regular hours by subtracting 12. 
+      } else if (currentHr >= 13) { //convert military hours at and over 1300 (1pm) to regular hours by subtracting 12.
         currentHr -= 12;
       }
       if (currentMin < 10) {
