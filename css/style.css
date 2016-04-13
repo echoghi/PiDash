@@ -33,6 +33,7 @@ html {
   width: 100%;
   font-weight: bold;
   text-align: center;
+  height: 98%;
 }
 
 #day1 {
@@ -143,14 +144,12 @@ html {
 }
 
 #ethereum {
-  height: 50.05%;
+  height: 50.04%;
   width: 33.4%;
   position: fixed;
   background: #ff8700;
-  transform: translate(-50%, 50%);
-  left: 50%;
-  right: 0;
-  bottom: 25%;
+  right: 33.3%;
+  bottom: 0%;
 }
 
 #stats > li{
