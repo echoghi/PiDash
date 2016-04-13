@@ -68,9 +68,10 @@
     });
   }])
 
-  .controller("ethereum", ['$scope', '$http', function($scope, $http) {
+  .controller("ethereum", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     $scope.ether;
-
+    
+function etherUpdate(){
  $http.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth").success(function(data) {
       $scope.ether = data;
    $scope.supply = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -83,11 +84,14 @@
    if(+data.change > 0){
       $('#change').css('color', 'green');
    }
-    });
+    }); }
+    
+    etherUpdate();
+    $interval(function() { etherUpdate();}, 120000);
 
   }])
 
-  .controller("clock", ['$scope', function($scope) {
+  .controller("clock", ['$scope', '$interval', function($scope, $interval) {
     $scope.time;
 
     function updateTime() {
@@ -99,7 +103,7 @@
         currentHr = currentDate.getHours();
       if (currentHr == 00) { //if midnight (00 hours) hour = 12
         currentHr = 12;
-      } else if (currentHr >= 13) { //convert military hours at and over 1300 (1pm) to regular hours by subtracting 12.
+      } else if (currentHr >= 13) { //convert military hours at and over 1300 (1pm) to regular hours by subtracting 12. 
         currentHr -= 12;
       }
       if (currentMin < 10) {
@@ -123,10 +127,8 @@
       }
       return realTime;
     }
-    setInterval(function() {
-      $scope.$apply(function() {
+   $interval(function() {
         $scope.time = updateTime();
-      });
     }, 1000);
   }])
 
