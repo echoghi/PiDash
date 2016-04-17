@@ -3,11 +3,11 @@
 
   .controller("weather", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
-    // Get the Day
+    function weatherUpdate() {
+      // Get the Day
     var days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
     var d = new Date;
     var n = d.getDay();
-
     $scope.day = days[n];
     $scope.date = new Date;
     $scope.forecastDay1 = days[n + 1];
@@ -15,8 +15,6 @@
     $scope.forecastDay3 = days[n + 3];
     $scope.forecastDay4 = days[n + 4];
     $scope.forecastDay5 = days[n + 5];
-
-    function weatherUpdate() {
       $http.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6").success(function(data) {
         $scope.weather = data;
         $scope.temp = Math.floor(data.list[0].temp.day * 9 / 5 - 459.67) + "°F";
