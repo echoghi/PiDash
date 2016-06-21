@@ -1,6 +1,8 @@
 (function() {
   angular.module('dashboard', [])
-
+  .config(function($httpProvider){
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+})
   .controller("weather", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function weatherUpdate() {
