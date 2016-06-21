@@ -15,7 +15,10 @@
     $scope.forecastDay3 = days[n + 3];
     $scope.forecastDay4 = days[n + 4];
     $scope.forecastDay5 = days[n + 5];
-      $http.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6").success(function(data) {
+      $http.get({
+        method: 'JSONP',
+        url: "http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6"
+      }).success(function(data) {
         $scope.weather = data;
         $scope.temp = Math.floor(data.list[0].temp.day * 9 / 5 - 459.67) + "°F";
         $scope.min = Math.floor(data.list[0].temp.min * 9 / 5 - 459.67);
@@ -42,7 +45,10 @@
   .controller("reddit", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function redditUpdate() {
-      $http.get("https://www.reddit.com/r/earthporn/.json").success(function(data) {
+      $http.get({
+        method: 'JSONP',
+        url: "https://www.reddit.com/r/earthporn/.json"
+        }).success(function(data) {
         $scope.reddit = data;
         $scope.photos = data.data.children[0].data.preview.images[0].source.url;
         $scope.title = data.data.children[0].data.title;
@@ -57,7 +63,10 @@
   .controller("news", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function newsUpdate() {
-      $http.get("http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1/.json?api-key=da100d8e23d3f94fc1ff6deefe9742ea:2:70699191").success(function(data) {
+      $http.get({
+        method: 'JSONP',
+        url: "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1/.json?api-key=da100d8e23d3f94fc1ff6deefe9742ea:2:70699191"
+        }).success(function(data) {
         $scope.news = data;
       });
     }
@@ -71,7 +80,10 @@
   .controller("ethereum", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function etherUpdate() {
-      $http.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth").success(function(data) {
+      $http.get({
+        method: 'JSONP',
+        url: "https://coinmarketcap-nexuist.rhcloud.com/api/eth"
+        }).success(function(data) {
         $scope.ether = data;
         $scope.supply = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         $scope.market_cap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
