@@ -1,40 +1,31 @@
 (function() {
   angular.module('dashboard', [])
-  .config(function($httpProvider){
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-})
+
   .controller("weather", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function weatherUpdate() {
       // Get the Day
     var days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
-    var d = new Date;
-    var n = d.getDay();
-    $scope.day = days[n];
+    var d = new Date,
+        n = d.getDay();
+    $scope.forecastDays = [];
+    
+    // Populate Forecast Scope
+    for(var day=1;day<6;day++){
+  $scope.forecastDays[0] = days[n];
+  $scope.forecastDays[day] = days[n + day];
+    }
     $scope.date = new Date;
-    $scope.forecastDay1 = days[n + 1];
-    $scope.forecastDay2 = days[n + 2];
-    $scope.forecastDay3 = days[n + 3];
-    $scope.forecastDay4 = days[n + 4];
-    $scope.forecastDay5 = days[n + 5];
-      $http.get({
-        method: 'JSONP',
-        url: "http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6"
-      }).success(function(data) {
+    
+      $http.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6").success(function(data) {
         $scope.weather = data;
+        $scope.min = [];
+        $scope.max = [];
+        for(var i in data.list){
+          $scope.min[i] = Math.floor(data.list[i].temp.min * 9 / 5 - 459.67);
+          $scope.max[i] = Math.floor(data.list[i].temp.max * 9 / 5 - 459.67);
+        }
         $scope.temp = Math.floor(data.list[0].temp.day * 9 / 5 - 459.67) + "°F";
-        $scope.min = Math.floor(data.list[0].temp.min * 9 / 5 - 459.67);
-        $scope.max = Math.floor(data.list[0].temp.max * 9 / 5 - 459.67);
-        $scope.min2 = Math.floor(data.list[1].temp.min * 9 / 5 - 459.67);
-        $scope.max2 = Math.floor(data.list[1].temp.max * 9 / 5 - 459.67);
-        $scope.min3 = Math.floor(data.list[2].temp.min * 9 / 5 - 459.67);
-        $scope.max3 = Math.floor(data.list[2].temp.max * 9 / 5 - 459.67);
-        $scope.min4 = Math.floor(data.list[3].temp.min * 9 / 5 - 459.67);
-        $scope.max4 = Math.floor(data.list[3].temp.max * 9 / 5 - 459.67);
-        $scope.min5 = Math.floor(data.list[4].temp.min * 9 / 5 - 459.67);
-        $scope.max5 = Math.floor(data.list[4].temp.max * 9 / 5 - 459.67);
-        $scope.min6 = Math.floor(data.list[5].temp.min * 9 / 5 - 459.67);
-        $scope.max6 = Math.floor(data.list[5].temp.max * 9 / 5 - 459.67);
       })
     }
     weatherUpdate();
@@ -47,10 +38,7 @@
   .controller("reddit", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function redditUpdate() {
-      $http.get({
-        method: 'JSONP',
-        url: "https://www.reddit.com/r/earthporn/.json"
-        }).success(function(data) {
+      $http.get("https://www.reddit.com/r/earthporn/.json").success(function(data) {
         $scope.reddit = data;
         $scope.photos = data.data.children[0].data.preview.images[0].source.url;
         $scope.title = data.data.children[0].data.title;
@@ -65,10 +53,7 @@
   .controller("news", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function newsUpdate() {
-      $http.get({
-        method: 'JSONP',
-        url: "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1/.json?api-key=da100d8e23d3f94fc1ff6deefe9742ea:2:70699191"
-        }).success(function(data) {
+      $http.get("http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1/.json?api-key=da100d8e23d3f94fc1ff6deefe9742ea:2:70699191").success(function(data) {
         $scope.news = data;
       });
     }
@@ -82,10 +67,7 @@
   .controller("ethereum", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
     function etherUpdate() {
-      $http.get({
-        method: 'JSONP',
-        url: "https://coinmarketcap-nexuist.rhcloud.com/api/eth"
-        }).success(function(data) {
+      $http.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth").success(function(data) {
         $scope.ether = data;
         $scope.supply = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         $scope.market_cap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
