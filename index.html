@@ -12,56 +12,55 @@
   <div id="weather" ng-controller="weather">
     <p id="weather-title">
       {{weather.city.name}}, {{weather.city.country}}
-      <br> {{day}} {{date | date: format: 'EEEE, MMMM d, y'}}
+      <br>  {{date | date: 'fullDate'}}
     </p>
     <p id="weather-main">
       {{temp}} <img ng-src='http://openweathermap.org/img/w/{{weather.list[0].weather[0].icon}}.png'>
     </p>
-    <span id="weather-subhead">
- {{weather.list[0].weather[0].description}} with a high of {{max}} and a low of {{min}}
+    <span id="weather-subhead"> 
+ {{weather.list[0].weather[0].description}} with a high of {{max[0]}} and a low of {{min[0]}}
       </span>
     </p>
     <br>
-    <br>
     <div id="forecast">
       <div id="day1">
-        {{forecastDay1}}
+        {{forecastDays[1]}}
         <img ng-src='http://openweathermap.org/img/w/{{weather.list[1].weather[0].icon}}.png'>
         <p class="row">
-          <span class="max">{{max2}}</span>
-          <span class="min">{{min2}}</span>
+          <span class="max">{{max[1]}}</span>
+          <span class="min">{{min[1]}}</span>
         </p>
       </div>
       <div id="day2">
-        {{forecastDay2}}
+        {{forecastDays[2]}}
         <img ng-src='http://openweathermap.org/img/w/{{weather.list[2].weather[0].icon}}.png'>
         <p class="row">
-          <span class="max">{{max3}}</span>
-          <span class="min">{{min3}}</span>
+          <span class="max">{{max[2]}}</span>
+          <span class="min">{{min[2]}}</span>
         </p>
       </div>
       <div id="day3">
-        {{forecastDay3}}
+        {{forecastDays[3]}}
         <img ng-src='http://openweathermap.org/img/w/{{weather.list[3].weather[0].icon}}.png'>
         <p class="row">
-          <span class="max">{{max4}}</span>
-          <span class="min">{{min4}}</span>
+          <span class="max">{{max[3]}}</span>
+          <span class="min">{{min[3]}}</span>
         </p>
       </div>
       <div id="day4">
-        {{forecastDay4}}
+        {{forecastDays[4]}}
         <img ng-src='http://openweathermap.org/img/w/{{weather.list[4].weather[0].icon}}.png'>
         <p class="row">
-          <span class="max">{{max5}}</span>
-          <span class="min">{{min5}}</span>
+          <span class="max">{{max[4]}}</span>
+          <span class="min">{{min[4]}}</span>
         </p>
       </div>
       <div id="day5">
-        {{forecastDay5}}
+        {{forecastDays[5]}}
         <img ng-src='http://openweathermap.org/img/w/{{weather.list[5].weather[0].icon}}.png'>
         <p class="row">
-          <span class="max">{{max6}}</span>
-          <span class="min">{{min6}}</span>
+          <span class="max">{{max[5]}}</span>
+          <span class="min">{{min[5]}}</span>
         </p>
       </div>
     </div>
@@ -92,14 +91,14 @@
     <p id="percent">${{price}}
       <span id="change">({{ether.change}}%)<span>
     </p>
-    <br>
+        <br>
     <p id="stats">
       <li>Market Capitalization: ${{market_cap}}</li>
-      <li>Available Supply: {{supply}} Eth</li>
+      <li>Available Supply: {{supply}} ETH</li>
       <li>ETH/BTC: {{btc}} BTC</li>
+      <li>Wallet Balance: {{balance}} ETH</li>
     </p>
-    <br>
-        <img id="eth" src="/homestead.jpg">
+        <img id="eth" src="http://dapplist.net/images/sale-icon.png">
   </div>
   <div id="clock" ng-controller="clock">
     <p id="day"><img src='http://findicons.com/files/icons/2480/simplegreen_sustainable_business_icons_set/128/sun.png'></p>
