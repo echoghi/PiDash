@@ -159,10 +159,9 @@ html {
 }
 
 #eth{
-  height: 120px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   border-radius: 4px;
-  box-shadow: 5px 5px 5px rgba(0,0,0,.5);
 }
 
 #ethereum-header {
