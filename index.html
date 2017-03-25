@@ -1,116 +1,13 @@
 <!DOCTYPE html>
 <html >
-  <head>
-    <meta charset="UTF-8">
-    <title>PiDash</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-  <div ng-app="dashboard">
-  <div id="weather" ng-controller="weather">
-    <p id="weather-title">
-      {{weather.city.name}}, {{weather.city.country}}
-      <br>  {{date | date: 'fullDate'}}
-    </p>
-    <p id="weather-main">
-      {{temp}} <img ng-src='http://openweathermap.org/img/w/{{weather.list[0].weather[0].icon}}.png'>
-    </p>
-    <span id="weather-subhead"> 
- {{weather.list[0].weather[0].description}} with a high of {{max[0]}} and a low of {{min[0]}}
-      </span>
-    </p>
-    <br>
-    <div id="forecast">
-      <div id="day1">
-        {{forecastDays[1]}}
-        <img ng-src='http://openweathermap.org/img/w/{{weather.list[1].weather[0].icon}}.png'>
-        <p class="row">
-          <span class="max">{{max[1]}}</span>
-          <span class="min">{{min[1]}}</span>
-        </p>
-      </div>
-      <div id="day2">
-        {{forecastDays[2]}}
-        <img ng-src='http://openweathermap.org/img/w/{{weather.list[2].weather[0].icon}}.png'>
-        <p class="row">
-          <span class="max">{{max[2]}}</span>
-          <span class="min">{{min[2]}}</span>
-        </p>
-      </div>
-      <div id="day3">
-        {{forecastDays[3]}}
-        <img ng-src='http://openweathermap.org/img/w/{{weather.list[3].weather[0].icon}}.png'>
-        <p class="row">
-          <span class="max">{{max[3]}}</span>
-          <span class="min">{{min[3]}}</span>
-        </p>
-      </div>
-      <div id="day4">
-        {{forecastDays[4]}}
-        <img ng-src='http://openweathermap.org/img/w/{{weather.list[4].weather[0].icon}}.png'>
-        <p class="row">
-          <span class="max">{{max[4]}}</span>
-          <span class="min">{{min[4]}}</span>
-        </p>
-      </div>
-      <div id="day5">
-        {{forecastDays[5]}}
-        <img ng-src='http://openweathermap.org/img/w/{{weather.list[5].weather[0].icon}}.png'>
-        <p class="row">
-          <span class="max">{{max[5]}}</span>
-          <span class="min">{{min[5]}}</span>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div id="reddit-photos" ng-controller="reddit">
-    <img id="earthporn" ng-src="{{photos}}">
-    <br>
-    <p id="reddit-subhead">
-      {{title}}
-      <br> Photos by r/{{reddit.data.children[0].data.subreddit}}
-    </p>
-  </div>
-  <div id="news" ng-controller="news as times">
-    <p id="news-header">
-      Top Stories from the NY Times
-    </p>
-    <p id="stories" ng-repeat="stories in news.results | limitTo: 3">
-      <img id="story-img" ng-src='{{stories.media[0]["media-metadata"][0].url}}'> {{stories.title}}
-      <br>
-      <br>
-      <span id="details">{{stories.abstract}} </span>
-    </p>
-  </div>
-  <div id="ethereum" ng-controller="ethereum">
-    <p id="ethereum-header">
-      Ethereum Ticker
-    </p>
-    <p id="percent">${{price}}
-      <span id="change">({{ether.change}}%)<span>
-    </p>
-        <br>
-    <p id="stats">
-      <li>Market Capitalization: ${{market_cap}}</li>
-      <li>Available Supply: {{supply}} ETH</li>
-      <li>ETH/BTC: {{btc}} BTC</li>
-      <li>Wallet Balance: {{balance}} ETH</li>
-    </p>
-        <img id="eth" src="/ethereum.png">
-  </div>
-  <div id="clock" ng-controller="clock">
-    <p id="day"><img src='http://findicons.com/files/icons/2480/simplegreen_sustainable_business_icons_set/128/sun.png'></p>
-    <p id="time">
-      {{time | date: format: 'h:mm a'}}
-    </p>
-    <br>
-    <p id="night"><img src='https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-symbol-128.png'></p>
-  </div>
-</div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
-    <script src="js/index.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>PiDash</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    </head>
+    <body>
+        <div id="main"></div>
+        <script src="build/bundle.js"></script>
+    </body>
 </html>

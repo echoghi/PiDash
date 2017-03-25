@@ -1,2 +1,2 @@
 # PiDash
-A dashboard app for Raspberry Pi using Angular JS
+A dashboard app for Raspberry Pi using React
