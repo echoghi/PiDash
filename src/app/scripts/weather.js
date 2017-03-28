@@ -16,18 +16,16 @@ class Weather extends React.Component {
 
     _getWeather() {
         
-        // Remove the 'www.' to cause a CORS error (and see the error state)
         axios.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6")
           .then(res => {
-            // Transform the raw data by extracting the nested posts
             let data = res;
             let days = [];
-            console.log(res)
+ 
             let dayNames = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
             let d    = new Date;
             let n    = d.getDay();
             let forecastDays = [];
-
+ 
             data.data.list.map((day, index) => {
 
                 days[index] = { day : "",
