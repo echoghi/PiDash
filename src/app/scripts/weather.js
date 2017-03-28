@@ -114,8 +114,6 @@ class Weather extends React.Component {
     }
 
     componentDidMount() {
-        this._getWeather();
-
         let weatherUpdate = setInterval(() => {
             this._getWeather();
         }, 120000);

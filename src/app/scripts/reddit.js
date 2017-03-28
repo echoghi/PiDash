@@ -77,8 +77,6 @@ class Reddit extends React.Component {
     }
 
     componentDidMount() {
-        this._getPost();
-
         let redditUpdate = setInterval(() => {
             this._getPost();
         }, 120000);
