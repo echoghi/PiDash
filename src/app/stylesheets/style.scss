@@ -1,84 +1,87 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
-html {
+
+html, body, #main {
   text-align: center;
+  height: 100%;
 }
 
-#weather {
-  height: 50%;
-  background: #20919c;
-  width: 33.3%;
-  position: fixed;
-  top: 0;
-  left: 0;
+
+.dashboard {
+    height: 100%;
+
+    .weather {
+        height: 50%;
+        background: #20919c;
+        width: 33.3%;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
 }
 
-#weather-title {
-  font-size: 15px;
-  margin-top: 10px;
-  font-weight: bold;
+.forecast {
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    height: 98%;
+
+    .weather-title {
+        font-size: 25px;
+        display: block;
+        padding: 20px 0;
+        font-weight: bold;
+    }
+
+    .weather-subhead {
+        display: block;
+        padding: 20px 0;
+        font-size: 17px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .forecast-lower {
+        margin: 0 auto;
+        padding-top: 50px;
+        display: block;
+
+        div {
+            width: 15%;
+            display: inline-block;
+
+            img { 
+                display: block;
+                margin: 0 auto; 
+            }
+        }
+    }
+
 }
 
-#weather-main {
+div.row {
+    display: block;
+    width: 100% !important;
+
+    span {
+        display: inline-block;
+        padding: 0 5px;
+        float: left;
+        margin: 0 auto;
+    }
+}
+
+.weather-main {
   font-size: 50px;
   font-weight: bold;
 }
 
-#weather-subhead {
-  font-size: 13px;
-  font-weight: bold;
-  text-align: center;
-}
-
-#forecast {
-  margin-left: 20px;
-  width: 100%;
-  font-weight: bold;
-  text-align: center;
-  height: 98%;
-}
-
-#day1 {
-  margin-left: 5px;
-  width: 15%;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  float: left;
-}
-
-#day2 {
+.day {
   margin-left: 10px;
   width: 15%;
   font-weight: bold;
   text-align: center;
-  display: inline-block;
-  float: left;
-}
-
-#day3 {
-  margin-left: 10px;
-  width: 15%;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  float: left;
-}
-
-#day4 {
-  margin-left: 10px;
-  width: 15%;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  float: left;
-}
-
-#day5 {
-  margin-left: 10px;
-  width: 15%;
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
+  display: block;
   float: left;
 }
 
