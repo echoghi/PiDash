@@ -17,6 +17,25 @@ html, body, #main {
         left: 0;
     }
 
+    .reddit {
+        height: 50%;
+        width: 66.7%;
+        position: fixed;
+        color: #FFF;
+        background-color: #000;
+        right: 0;
+        top: 0;
+
+        div.reddit-container {
+            height: 90%;
+
+            img {
+                width: 100%;
+                height: 100%
+            }
+        }
+    }
+
 }
 
 .forecast {
@@ -79,27 +98,16 @@ html, body, #main {
     }
 }
 
-
-#reddit-photos {
-  height: 50%;
-  width: 66.7%;
-  position: fixed;
-  color: #FFF;
-  background-color: #000;
-  right: 0;
-  top: 0;
+.reddit-subhead {
+    height: 10%;
+    font-size: 12px;
+    padding: 5px 0;
+}
+.reddit-photo {
+    display: block;
 }
 
-#earthporn {
-  height: 90%;
-  width: 100%;
-}
-
-#reddit-subhead {
-  font-size: 10px;
-}
-
-#news {
+.news {
   height: 50%;
   width: 33.3%;
   position: fixed;
