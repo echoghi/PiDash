@@ -108,68 +108,87 @@ html, body, #main {
 }
 
 .news {
-  height: 50%;
-  width: 33.3%;
-  position: fixed;
-  background-color: #eb4457;
-  left: 0;
-  bottom: 0;
+    height: 50%;
+    width: 33.3%;
+    position: fixed;
+    background-color: #eb4457;
+    left: 0;
+    bottom: 0;
 }
 
-#news-header {
-  font-size: 15px;
-  margin-top: 10px;
-  font-weight: bold;
+.news-header {
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-#stories {
-  width: 90%;
-  margin-left: 15px;
-  font-size: 10px;
-  text-align: left;
+.stories {
+    width: 90%;
+    margin-left: 15px;
+    font-size: 10px;
+    text-align: left;
 }
 
-#story-img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  border-radius: 10px;
+.story-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 10px;
 }
 
-#details {
-  font-size: 9px;
-  margin-left: 5px;
-  text-align: right;
+.details {
+    font-size: 9px;
+    margin-left: 5px;
+    text-align: right;
 }
 
-#percent{
-  font-size: 40px;
+.percent{
+    font-size: 40px;
 }
 
-#ethereum {
-  height: 50.04%;
-  width: 33.4%;
-  position: fixed;
-  background: #ff8700;
-  right: 33.3%;
-  bottom: 0%;
+.ethereum {
+    height: 50.04%;
+    width: 33.4%;
+    position: fixed;
+    background: #ff8700;
+    right: 33.3%;
+    bottom: 0%;
 }
 
-#stats > li{
-  text-align: left;
-  margin-top: 10px;
+.stats > li{
+    text-align: left;
+    padding: 5px;
+    margin: 10px auto;
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 15px;
 }
 
-#eth{
-  height: 150px;
-  width: 150px;
-  border-radius: 4px;
+.eth{
+    height: 150px;
+    width: 150px;
+    border-radius: 4px;
 }
 
-#ethereum-header {
-  font-size: 15px;
-  margin-top: 10px;
-  font-weight: bold;
+.ethereum-header {
+    font-size: 25px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.price,
+.change {
+    padding: 10px 5px;
+}
+
+.change {
+    &.positive {
+        color: green;
+    }
+
+    &.negative {
+        color: red;
+    }
 }
 
 #clock {
@@ -194,4 +213,12 @@ html, body, #main {
   position: fixed;
   top: 55%;
   left: 78%;
+}
+
+.error,
+.loading {
+    position: relative;
+    top: 50%;
+    font-size: 15px;
+    font-weight: bold;
 }

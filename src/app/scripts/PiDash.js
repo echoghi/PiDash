@@ -24,6 +24,7 @@ class PiDash extends React.Component {
 			<div className="dashboard">
 				<Weather />
 				<Reddit />
+				<News />
 				<Ethereum />
 				<Clock />
 			</div>

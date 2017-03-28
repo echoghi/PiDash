@@ -20,7 +20,7 @@ class Reddit extends React.Component {
             let data = res;
             let photo;
             let title;
-            console.log(data.data.data.children[1].data.title)
+
             photo = data.data.data.children[1].data.preview.images[0].source.url;
             title = data.data.data.children[1].data.title;
 
