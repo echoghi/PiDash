@@ -20,10 +20,10 @@ class Ethereum extends React.Component {
         axios.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth")
             .then(res => {
                 let data      = res.data;
-                let supply    = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                let marketCap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                let price     = (data.price.usd).toFixed(2);
-                let btc       = (data.price.btc);
+                    supply    = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                    marketCap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                    price     = (data.price.usd).toFixed(2),
+                    btc       = (data.price.btc);
                 // Update state to trigger a re-render.
                 // Clear any errors, and turn off the loading indiciator.
                 this.setState({

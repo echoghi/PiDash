@@ -7,20 +7,37 @@ class News extends React.Component {
 
         this.state = {
             data    : [],
+            news    : [],
             loading : true,
             error   : null
         };
     };
 
     _getNews() {
-        axios.get("http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1/.json?api-key=da100d8e23d3f94fc1ff6deefe9742ea:2:70699191")
+        axios.get("https://www.reddit.com/r/news/.json")
             .then(res => {
-                let data = res;
-                console.log(res)
+                let data = res,
+                    news = [],
+                    sub;
+                    console.log(data)
+
+                sub = data.data.data.children[0].data.subreddit;
+
+                res.data.data.children.map((headline, index) => {
+                    if(index < 10) {
+                        news.push({
+                            title : headline.data.title,
+                            id    : headline.data.id
+                        });
+                    }
+                });
+
                 // Update state to trigger a re-render.
                 // Clear any errors, and turn off the loading indiciator.
                 this.setState({
                     data,
+                    news,
+                    sub,
                     loading : false,
                     error   : null
                 });
@@ -41,15 +58,13 @@ class News extends React.Component {
 
         return (
             <div className="news">
-                <h4 id="news-header">
-                    Top Stories from the NY Times
-                </h4>
-                {this.state.data.results.map(headlines => 
-                    <div className="stories">
-                        <img className="story-img" src={headlines.media[0]["media-metadata"][0].url} /> 
+                <h3 className="news-header">
+                    r/{this.state.sub}
+                </h3>
+                {this.state.news.map(headlines => 
+                    <li className="stories" key={headlines.id}> 
                         {headlines.title}
-                        <span className="details">{headlines.abstract} </span>
-                    </div>
+                    </li>
                 )}
             </div>
         );
