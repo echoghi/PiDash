@@ -19,7 +19,6 @@ class News extends React.Component {
                 let data = res,
                     news = [],
                     sub;
-                    console.log(data)
 
                 sub = data.data.data.children[0].data.subreddit;
 

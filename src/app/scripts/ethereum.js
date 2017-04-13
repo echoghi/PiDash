@@ -19,7 +19,8 @@ class Ethereum extends React.Component {
     _getPrices() {
         axios.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth")
             .then(res => {
-                let data      = res.data;
+
+                let data      = res.data,
                     supply    = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                     marketCap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                     price     = (data.price.usd).toFixed(2),

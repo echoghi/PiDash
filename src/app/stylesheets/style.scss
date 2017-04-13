@@ -221,3 +221,35 @@ html, body, #main {
     font-size: 15px;
     font-weight: bold;
 }
+
+@media only screen  and (min-width : 1624px) {
+    .forecast .weather-title {
+        font-size: 35px;
+    }
+    .weather-subhead {
+        font-size: 20px;
+    }
+    .forecast .forecast-lower {
+        padding-top: 200px;
+    }
+    .news-header,
+    .ethereum-header {
+        font-size: 35px;
+    }
+    .stories {
+        font-size: 15px;
+    }
+    .stats > li {
+        font-size: 17px;
+    }
+    .percent {
+        font-size: 50px;
+    }
+    .eth {
+        height: 150px;
+        width: 150px;
+    }
+    .clock .time {
+        font-size: 60px;
+    }
+}
