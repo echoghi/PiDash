@@ -72,7 +72,6 @@ class Ethereum extends React.Component {
                     <li>Market Capitalization: ${this.state.marketCap}</li>
                     <li>Available Supply: {this.state.supply} ETH</li>
                     <li>ETH/BTC: {this.state.btc} BTC</li>
-                    <li>Wallet Balance: {this.state.balance} ETH</li>
                 </ul>
                 <img className="eth" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png" />            
             </div>

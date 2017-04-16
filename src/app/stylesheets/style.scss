@@ -219,31 +219,31 @@ html, body, #main {
 // Large Breakpoints first
 @media only screen  and (min-width : 1624px) {
     .forecast .weather-title {
-        font-size: 35px;
+        font-size: 45px;
     }
-    .weather-subhead {
+    .forecast .weather-subhead {
         font-size: 20px;
     }
     .forecast .forecast-lower {
         padding-top: 200px;
-        font-size: 17px;
+        font-size: 25px;
     }
     .news-header,
     .ethereum-header {
-        font-size: 35px;
+        font-size: 45px;
     }
     .stories {
         font-size: 17px;
     }
     .stats > li {
-        font-size: 17px;
+        font-size: 20px;
     }
     .percent {
-        font-size: 50px;
+        font-size: 75px;
     }
     .eth {
-        height: 150px;
-        width: 150px;
+        height: 170px;
+        width: 170px;
     }
     .dashboard .clock .night {
         top: 10%;
