@@ -10,7 +10,7 @@ html, body, #main {
 
     .weather {
         height: 50%;
-        background: #20919c;
+        background: #0097C3;
         width: 33.3%;
         position: fixed;
         top: 0;
@@ -22,7 +22,7 @@ html, body, #main {
         width: 66.7%;
         position: fixed;
         color: #FFF;
-        background-color: #000;
+        background-color: #00596E;
         right: 0;
         top: 0;
 
@@ -33,6 +33,48 @@ html, body, #main {
                 width: 100%;
                 height: 100%
             }
+        }
+    }
+
+    .news {
+        height: 50%;
+        width: 33.3%;
+        position: fixed;
+        background: #00596E;
+        color: #FFF;
+        left: 0;
+        bottom: 0;
+    }
+
+    .ethereum {
+        height: 50.04%;
+        width: 33.4%;
+        position: fixed;
+        background: #00A4D3;
+        right: 33.3%;
+        bottom: 0%;
+    }
+
+    .clock {
+        height: 50%;
+        width: 33.3%;
+        position: fixed;
+        background: #00596E;
+        right: 0;
+        bottom: 0;
+
+        .night,
+        .day {
+            position: relative;
+            top: 20%;
+        }
+
+        .time {
+            margin-top: 15%;
+            font-family: Raleway;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 50px;
         }
     }
 
@@ -101,19 +143,9 @@ html, body, #main {
 .reddit-subhead {
     height: 10%;
     font-size: 12px;
-    padding: 5px 0;
 }
 .reddit-photo {
     display: block;
-}
-
-.news {
-    height: 50%;
-    width: 33.3%;
-    position: fixed;
-    background-color: #eb4457;
-    left: 0;
-    bottom: 0;
 }
 
 .news-header {
@@ -144,15 +176,6 @@ html, body, #main {
 
 .percent{
     font-size: 40px;
-}
-
-.ethereum {
-    height: 50.04%;
-    width: 33.4%;
-    position: fixed;
-    background: #ff8700;
-    right: 33.3%;
-    bottom: 0%;
 }
 
 .stats > li{
@@ -191,29 +214,6 @@ html, body, #main {
     }
 }
 
-.clock {
-    height: 50%;
-    width: 33.3%;
-    position: fixed;
-    background: grey;
-    right: 0;
-    bottom: 0;
-
-    .night,
-    .day {
-        position: relative;
-        top: 20%;
-    }
-
-    .time {
-        margin-top: 15%;
-        font-family: Raleway;
-        color: #7FFF00;
-        font-weight: bold;
-        font-size: 50px;
-    }
-}
-
 .error,
 .loading {
     position: relative;
@@ -237,7 +237,7 @@ html, body, #main {
         font-size: 35px;
     }
     .stories {
-        font-size: 15px;
+        font-size: 17px;
     }
     .stats > li {
         font-size: 17px;
@@ -251,5 +251,14 @@ html, body, #main {
     }
     .clock .time {
         font-size: 60px;
+    }
+}
+
+@media only screen  and (min-width : 1324px) {
+   .forecast .forecast-lower {
+        padding-top: 120px;
+    }
+    .stories {
+        font-size: 15px;
     }
 }
