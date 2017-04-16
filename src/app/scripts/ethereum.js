@@ -62,7 +62,7 @@ class Ethereum extends React.Component {
         return (
             <div>
                 <h4 className="ethereum-header">
-                Ethereum Ticker
+                Ethereum
                 </h4>
                 <div className="percent">
                     <span className="price">${this.state.price}</span>
