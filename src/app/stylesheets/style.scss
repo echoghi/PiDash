@@ -161,13 +161,6 @@ html, body, #main {
     text-align: left;
 }
 
-.story-img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-}
-
 .details {
     font-size: 9px;
     margin-left: 5px;
@@ -222,6 +215,7 @@ html, body, #main {
     font-weight: bold;
 }
 
+// Large Breakpoints first
 @media only screen  and (min-width : 1624px) {
     .forecast .weather-title {
         font-size: 35px;
@@ -231,6 +225,7 @@ html, body, #main {
     }
     .forecast .forecast-lower {
         padding-top: 200px;
+        font-size: 17px;
     }
     .news-header,
     .ethereum-header {
@@ -249,16 +244,37 @@ html, body, #main {
         height: 150px;
         width: 150px;
     }
-    .clock .time {
-        font-size: 60px;
+    .dashboard .clock .night {
+        top: 10%;
+
+        img {
+            height: 200px;
+            width: 200px;
+        }
+    }
+    .dashboard .clock .time {
+        font-size: 80px;
+        margin-top: 0;
     }
 }
 
-@media only screen  and (min-width : 1324px) {
+@media only screen  and (min-width : 1324px) and (max-width : 1623px){
    .forecast .forecast-lower {
         padding-top: 120px;
     }
     .stories {
         font-size: 15px;
+    }
+    .dashboard .clock .night {
+        top: 10%;
+
+        img {
+            height: 180px;
+            width: 180px;
+        }
+    }
+    .dashboard .clock .time {
+        font-size: 75px;
+        margin-top: 0;
     }
 }
