@@ -1,8 +1,9 @@
 /** 
  * This is a simple express server, to show how to proxy weather rquest to DarkSky API.
  */
-var express = require('express');
+var express    = require('express');
 var bodyParser = require('body-parser');
+var chalk      = require('chalk');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 var port = 8080;
@@ -42,7 +43,7 @@ app.get('/api/darksky', function(req, res) {
         // Retrieves location coordinates (latitude and longitude) from client request query
         var coordinates = req.query.latitude + ',' + req.query.longitude;
         var url = url_prefix + coordinates;
-        console.log('Fetching '+ url + "...");
+        console.log(chalk.green('Fetching '+ url + "..."));
 
         fetch(url)
         .then(function(response) {
@@ -55,11 +56,11 @@ app.get('/api/darksky', function(req, res) {
             res.status(200).json(payload);
         });
     } catch(err) {
-        console.log("Error occured requesting Dark Sky API:", err);
+        console.log(chalk.red("Error occured requesting Dark Sky API:", err));
         res.status(500).json({'message': 'Error occured requesting Dark Sky API', 'details' : err});
     }
 });
 
 // Start the server
 server.listen(port);
-console.log('Server is listening on port ' + port);
+console.log(chalk.green('Server is listening on port ' + port));

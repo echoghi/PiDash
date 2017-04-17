@@ -6,6 +6,10 @@ class Clock extends React.Component {
 
         this.state = {
             time    : "",
+            day     : "",
+            month   : "",
+            year    : "",
+            date    : "",
             loading : true,
             error   : null
         };
@@ -13,13 +17,20 @@ class Clock extends React.Component {
 
     _getTime() {
         let currentDate     = new Date(),
+            date            = currentDate.getDate(),
             time,
-            icon,
-            iconClass,
+            day             = currentDate.getDay(),
+            monthNum        = currentDate.getMonth(),
+            year            = currentDate.getFullYear(),
             currentSec      = currentDate.getSeconds(),
             currentMillisec = currentDate.getMilliseconds(),
             currentMin      = currentDate.getMinutes(),
-            currentHr       = currentDate.getHours();
+            currentHr       = currentDate.getHours(),
+            months          = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
+            days            = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+
+            let month = months[monthNum];
+            day   = days[day];
 
         if (currentHr === 0) { //if midnight (00 hours) hour = 12
             currentHr = 12;
@@ -31,18 +42,6 @@ class Clock extends React.Component {
             currentMin = "0" + currentMin;
         }
 
-        if (currentDate.getHours() > 18) {
-            icon = "https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-symbol-128.png";
-            iconClass = "night";
-        }
-
-        if (currentDate.getHours() >= 18 || currentDate.getHours() <= 5) {
-            icon = "https://cdn3.iconfinder.com/data/icons/meteocons/512/moon-symbol-128.png";
-            iconClass = "night";
-        } else {
-            icon = "http://findicons.com/files/icons/2480/simplegreen_sustainable_business_icons_set/128/sun.png";
-            iconClass = "day";
-        }
 
         if (currentDate.getHours() < 12) {
             time = currentHr + ':' + currentMin + " AM";
@@ -52,8 +51,10 @@ class Clock extends React.Component {
 
       this.setState({
                 time,
-                icon,
-                iconClass,
+                day,
+                month,
+                year,
+                date,
                 loading : false,
                 error   : null
             });
@@ -66,11 +67,11 @@ class Clock extends React.Component {
 
         return (
             <div className="clock">
-                <div className={this.state.iconClass}>
-                    <img src={this.state.icon} />
-                </div>
                 <div className="time">
                     {this.state.time}
+                </div>
+                <div className="time--ext">
+                    {this.state.day} {this.state.month} {this.state.date}, {this.state.year}
                 </div>
             </div>
         );

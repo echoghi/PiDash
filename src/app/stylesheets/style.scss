@@ -51,6 +51,7 @@ html, body, #main {
         height: 50.04%;
         width: 33.4%;
         position: fixed;
+        color: #FFF;
         background: #00A4D3;
         right: 33.3%;
         bottom: 0%;
@@ -60,22 +61,20 @@ html, body, #main {
         height: 50%;
         width: 33.3%;
         position: fixed;
+        padding: 100px 0;
+        color: #FFF;
+        font-weight: bold;
         background: #00596E;
         right: 0;
         bottom: 0;
 
-        .night,
-        .day {
-            position: relative;
-            top: 20%;
-        }
 
         .time {
-            margin-top: 15%;
-            font-family: Raleway;
-            color: #FFF;
-            font-weight: bold;
             font-size: 50px;
+
+            &--ext {
+                font-size: 35px;
+            }
         }
     }
 
