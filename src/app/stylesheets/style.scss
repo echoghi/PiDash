@@ -84,38 +84,17 @@ html, body, #main {
 .forecast {
     width: 100%;
     font-weight: bold;
+    color: #fff;
     text-align: center;
     height: 98%;
 
-    .weather-title {
-        font-size: 25px;
-        display: block;
+    &__header {
         padding: 20px 0;
-        font-weight: bold;
+        font-size: 25px; 
     }
 
-    .weather-subhead {
-        display: block;
-        padding: 20px 0;
-        font-size: 17px;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .forecast-lower {
-        margin: 0 auto;
-        padding-top: 50px;
-        display: block;
-
-        div {
-            width: 15%;
-            display: inline-block;
-
-            img { 
-                display: block;
-                margin: 0 auto; 
-            }
-        }
+    &__temp {
+        font-size: 60px;  
     }
 
 }
@@ -156,10 +135,16 @@ html, body, #main {
 }
 
 .stories {
-    width: 90%;
-    margin-left: 15px;
+    width: 100%;
     font-size: 12px;
     text-align: left;
+    list-style: none;
+    height: 85px;
+    padding: 10px 15px;
+
+    &:nth-child(2n+2) {
+        background: #0087AF;
+    }
 }
 
 .details {
@@ -218,15 +203,14 @@ html, body, #main {
 
 // Large Breakpoints first
 @media only screen  and (min-width : 1624px) {
-    .forecast .weather-title {
-        font-size: 45px;
-    }
-    .forecast .weather-subhead {
-        font-size: 20px;
-    }
-    .forecast .forecast-lower {
-        padding-top: 200px;
-        font-size: 25px;
+    .forecast {
+        &__header {
+            font-size: 45px; 
+        }
+
+        &__temp {
+            font-size: 70px;  
+        }
     }
     .news-header,
     .ethereum-header {
@@ -268,9 +252,14 @@ html, body, #main {
 }
 
 @media only screen  and (min-width : 1324px) and (max-width : 1623px){
-   .forecast .forecast-lower {
-        padding-top: 160px;
-        font-size: 18px;
+    .forecast {
+        &__header {
+            font-size: 25px; 
+        }
+
+        &__temp {
+            font-size: 60px;  
+        }
     }
     .stories {
         font-size: 15.5px;

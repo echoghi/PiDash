@@ -17,15 +17,12 @@ class News extends React.Component {
         axios.get("https://www.reddit.com/r/news/.json")
             .then(res => {
                 let data = res,
-                    news = [],
-                    sub;
-
-                sub = data.data.data.children[0].data.subreddit;
+                    news = [];
 
                 res.data.data.children.map((headline, index) => {
-                    if(index < 10) {
+                    if(index < 5) {
                         news.push({
-                            title : headline.data.title,
+                            title : headline.data.title.length > 170 ? headline.data.title.substring(0, 170) + '...' : headline.data.title,
                             id    : headline.data.id
                         });
                     }
@@ -36,7 +33,6 @@ class News extends React.Component {
                 this.setState({
                     data,
                     news,
-                    sub,
                     loading : false,
                     error   : null
                 });
@@ -57,9 +53,6 @@ class News extends React.Component {
 
         return (
             <div className="news">
-                <h3 className="news-header">
-                    r/{this.state.sub}
-                </h3>
                 {this.state.news.map(headlines => 
                     <li className="stories" key={headlines.id}> 
                         {headlines.title}

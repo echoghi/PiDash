@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import callApi from './apiUtils';
+import Skycons from 'react-skycons';
 
 class Weather extends React.Component {
     constructor() {
@@ -7,55 +9,98 @@ class Weather extends React.Component {
 
         this.state = {
             data     : [],
-            days     : [],
+            city     : "",
+            state    : "",
+            lat      : 0,
+            long     : 0,
+            temp     : 0,
+            icon     : "",
             loading  : true,
-            error    : null,
+            error    : null
         };
 
+        this._onSuccess = this._onSuccess.bind(this);
+        this._onFailure = this._onFailure.bind(this);
+
+    }
+    _onSuccess(res) {
+        let data = res,
+            temp = Math.round(res.currently.apparentTemperature) + '°',
+            icon = res.currently.icon;
+
+        switch (icon) {
+            case "clear-day":
+                icon = "CLEAR_DAY";
+                break;
+            case "clear-night":
+                icon = "CLEAR_NIGHT"; 
+                break;
+            case "partly-cloudy-day":
+                icon = "PARTLY_CLOUDY_DAY"; 
+                break;
+            case "partly-cloudy-night":
+                icon = "PARTLY_CLOUDY_NIGHT"; 
+                break;
+            case "cloudy":
+                icon = "CLOUDY"; 
+                break;
+            case "rain":
+                icon = "RAIN"; 
+                break;
+            case "sleet":
+                icon = "SLEET"; 
+                break;
+            case "snow":
+                icon = "SNOW"; 
+                break;
+            case "wind":
+                icon = "WIND"; 
+                break;
+            case "fog":
+                icon = "FOG"; 
+                break;
+            default :
+                icon = "CLEAR_DAY";
+                break;  
+        }
+        console.log(icon)
+        // Update state to trigger a re-render.
+        // Clear any errors, and turn off the loading indiciator.
+        this.setState({
+            data,
+            temp,
+            icon,
+            loading : false,
+            error   : null
+        });
+    }
+
+    _onFailure(error) {
+        let err = error;
+        this.setState({
+            loading : false,
+            error   : err
+        });
     }
 
     _getWeather() {
-        
-        axios.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=paloalto,us&APPID=1c3673cc09eb008cb08f2075c97393ae&cnt=6")
+        axios.get("http://api.ipinfodb.com/v3/ip-city/?key=86be52d35c2a9476eae382805a6161756a0b2fd47514dcb31121e889bf4c53b5&format=json")
           .then(res => {
-            let data = res;
-            let days = [];
- 
-            let dayNames = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
-            let d    = new Date;
-            let n    = d.getDay();
-            let forecastDays = [];
- 
-            data.data.list.map((day, index) => {
-
-                days[index] = { day : "",
-                                img : `http://openweathermap.org/img/w/${day.weather[0].icon}.png`, 
-                                min : Math.floor(day.temp.min * 9 / 5 - 459.67),
-                                max : Math.floor(day.temp.max * 9 / 5 - 459.67)  
-                              };
-
-            })
-
-            // Populate Forecast Scope
-            for(let i = 1; i < 6; i++) {
-                forecastDays[0] = dayNames[n];
-                forecastDays[i] = dayNames[n + i];
-            }
-
-            forecastDays.map((day, index) => {
-                days[index].day = day;
-            });
-
-            let currentTemp = Math.floor(data.data.list[0].temp.day * 9 / 5 - 459.67) + "°F";
+            let lat   = res.data.latitude,
+                long  = res.data.longitude,
+                city  = res.data.cityName,
+                state = res.data.regionName;
 
             // Update state to trigger a re-render.
             // Clear any errors, and turn off the loading indiciator.
             this.setState({
-                data,
-                days,
-                currentTemp,
-                loading : false,
-                error   : null
+                lat,
+                long,
+                city,
+                state
+            }, function(){
+                const url = `http://localhost:8080/api/darksky?latitude=${this.state.lat}&longitude=${this.state.long}`;
+                callApi(url, null, this._onSuccess, this._onFailure);
             });
         })
         .catch(err => {
@@ -65,7 +110,6 @@ class Weather extends React.Component {
                 error   : err
             });
         });
-
     }
 
     _forecast() {
@@ -75,35 +119,26 @@ class Weather extends React.Component {
 
         return (
             <div className="forecast">
-                <span className="weather-title">
-                    {this.state.data.data.city.name}, {this.state.data.data.city.country}
-                </span>
-                <span className="weather-subhead"> 
-                    {this.state.data.data.list[0].weather[0].description} with a high of {this.state.days[0].max} and a low of {this.state.days[0].min}
-                </span>
-                <div className="forecast-lower">
-                    {this.state.days.map(day =>
-                    <div key={day.day}>    
-                        {day.day}
-                        <img src={day.img} />
-                        <div className="day row">
-                            <span className="min">{day.min}</span>
-                            <span className="max">{day.max}</span>
-                        </div>
-                    </div>
-                    )}
+                <div className="forecast__header">
+                    {this.state.city}, {this.state.state}
+                </div>
+                <div className="forecast__icon">
+                    <Skycons color='white' icon={this.state.icon} autoplay={true} />
+                </div>
+                <div className="forecast__temp">
+                    {this.state.temp}
                 </div>
             </div>
         );
     }
 
     _renderLoading() {
-        return <div>Loading...</div>;
+        return <div className="loading">Loading...</div>;
     }
 
     _renderError() {
         return (
-            <div>
+            <div className="error">
                 Uh oh: {this.state.error.message}
             </div>
         );
@@ -117,7 +152,6 @@ class Weather extends React.Component {
         let weatherUpdate = setInterval(() => {
             this._getWeather();
         }, 120000);
-
     }
 
     componentWillUnmount() {
