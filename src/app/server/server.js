@@ -29,15 +29,14 @@ app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Test server is working (GET http://localhost:3001/api)
 app.get('/api/', function(req, res) {
-    res.json({ message: 'Hi, welcome to the server api!' });   
+    res.json({ message: 'Hi, welcome to the PiDash API' });   
 });
 
-// Following is an example to proxy client request to DarkSky forecast API
-var DARKSKY_SECRET_KEY = 'c760978036a761dc66bf1a05e6958a09'; 
 
-var url_prefix = 'https://api.darksky.net/forecast/' + DARKSKY_SECRET_KEY + '/';
+var darkSkyKey = 'c760978036a761dc66bf1a05e6958a09'; 
+
+var url_prefix = 'https://api.darksky.net/forecast/' + darkSkyKey + '/';
 app.get('/api/darksky', function(req, res) {
     try {
         // Retrieves location coordinates (latitude and longitude) from client request query
@@ -48,7 +47,7 @@ app.get('/api/darksky', function(req, res) {
         fetch(url)
         .then(function(response) {
             if (response.status != 200) {
-                res.status(response.status).json({'message': 'Bad response from Dark Sky server'});
+                res.status(response.status).json({'message': 'Negative Response (' + response.status + ') from the Dark Sky server'});
             }
             return response.json();
         })
@@ -56,8 +55,32 @@ app.get('/api/darksky', function(req, res) {
             res.status(200).json(payload);
         });
     } catch(err) {
-        console.log(chalk.red("Error occured requesting Dark Sky API:", err));
-        res.status(500).json({'message': 'Error occured requesting Dark Sky API', 'details' : err});
+        console.log(chalk.red("Error occured requesting the Dark Sky API:", err));
+        res.status(500).json({'message': 'Error occured requesting the Dark Sky API', 'details' : err});
+    }
+});
+var url_prefix2 = "https://api.coinmarketcap.com/v1/ticker/";
+app.get('/api/crypto', function(req, res) {
+    try {
+        // Retrieves location coordinates (latitude and longitude) from client request query
+        var coin = req.query.coin;
+        var url  = url_prefix2 + coin;
+
+        console.log(chalk.green('Fetching '+ url + "..."));
+
+        fetch(url)
+        .then(function(response) {
+            if (response.status != 200) {
+                res.status(response.status).json({'message': 'Negative Response (' + response.status + ') from the CoinMarketCap server'});
+            }
+            return response.json();
+        })
+        .then(function(payload) {
+            res.status(200).json(payload);
+        });
+    } catch(err) {
+        console.log(chalk.red("Error occured requesting the CoinMarketCap API:", err));
+        res.status(500).json({'message': 'Error occured requesting the CoinMarketCap API', 'details' : err});
     }
 });
 

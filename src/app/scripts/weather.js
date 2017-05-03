@@ -63,7 +63,7 @@ class Weather extends React.Component {
                 icon = "CLEAR_DAY";
                 break;  
         }
-        console.log(icon)
+
         // Update state to trigger a re-render.
         // Clear any errors, and turn off the loading indiciator.
         this.setState({

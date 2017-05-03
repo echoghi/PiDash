@@ -207,6 +207,13 @@ html, body, #main {
             font-size: 45px; 
         }
 
+        &__icon {
+            canvas {
+                height: initial;
+                width: initial; 
+            }
+        }
+
         &__temp {
             font-size: 70px;  
         }
@@ -269,6 +276,12 @@ html, body, #main {
         img {
             height: 180px;
             width: 180px;
+        }
+    }
+    .dashboard {
+        .weather,
+        .news {
+            width: 33.4%
         }
     }
     .dashboard .clock .day {

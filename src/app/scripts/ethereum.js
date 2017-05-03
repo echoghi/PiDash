@@ -9,6 +9,7 @@ class Ethereum extends React.Component {
             data      : [],
             supply    : "",
             marketCap : "",
+            symbol    : "",
             price     : "",
             btc       : "",
             loading   : true,
@@ -17,14 +18,15 @@ class Ethereum extends React.Component {
     };
 
     _getPrices() {
-        axios.get("https://coinmarketcap-nexuist.rhcloud.com/api/eth")
+        axios.get("http://localhost:8080/api/crypto?coin=ethereum")
             .then(res => {
-
-                let data      = res.data,
-                    supply    = (data.supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                    marketCap = (data.market_cap.usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                    price     = (data.price.usd).toFixed(2),
-                    btc       = (data.price.btc);
+ 
+                let data      = res.data[0],
+                    supply    = (data.total_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                    marketCap = parseInt(data.market_cap_usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                    symbol    = data.symbol,
+                    price     = parseInt(data.price_usd).toFixed(2),
+                    btc       = parseInt(data.price_btc);
                 // Update state to trigger a re-render.
                 // Clear any errors, and turn off the loading indiciator.
                 this.setState({
@@ -52,8 +54,8 @@ class Ethereum extends React.Component {
         if(this.state.error) {
             return this._renderError();
         }
-
-        if(this.state.data.change < 0) {
+        console.log(this.state.data.percent);
+        if(parseFloat(this.state.data.percent_change_24h) < 0) {
             colorClass = "change negative";
         } else {
             colorClass = "change positive";
@@ -66,11 +68,11 @@ class Ethereum extends React.Component {
                 </h4>
                 <div className="percent">
                     <span className="price">${this.state.price}</span>
-                    <span className={colorClass}>({this.state.data.change}%)</span>
+                    <span className={colorClass}>({parseFloat(this.state.data.percent_change_24h)}%)</span>
                 </div>
                 <ul className="stats">
                     <li>Market Capitalization: ${this.state.marketCap}</li>
-                    <li>Available Supply: {this.state.supply} ETH</li>
+                    <li>Available Supply: {this.state.supply} {this.state.symbol}</li>
                     <li>ETH/BTC: {this.state.btc} BTC</li>
                 </ul>
                 <img className="eth" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png" />            
