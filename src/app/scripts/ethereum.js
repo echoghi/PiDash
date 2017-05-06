@@ -26,13 +26,14 @@ class Ethereum extends React.Component {
                     marketCap = parseInt(data.market_cap_usd).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                     symbol    = data.symbol,
                     price     = parseInt(data.price_usd).toFixed(2),
-                    btc       = parseInt(data.price_btc);
+                    btc       = parseFloat(data.price_btc);
                 // Update state to trigger a re-render.
                 // Clear any errors, and turn off the loading indiciator.
                 this.setState({
                     data,
                     supply,
                     marketCap,
+                    symbol,
                     price,
                     btc,
                     loading : false,
