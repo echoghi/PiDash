@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var chalk      = require('chalk');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-var port = 8080;
+var port = 3000;
 
 // Configure app to use bodyParser to parse json data
 var app = express(); 
@@ -82,6 +82,12 @@ app.get('/api/crypto', function(req, res) {
         console.log(chalk.red("Error occured requesting the CoinMarketCap API:", err));
         res.status(500).json({'message': 'Error occured requesting the CoinMarketCap API', 'details' : err});
     }
+});
+
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
 });
 
 // Start the server

@@ -99,7 +99,7 @@ class Weather extends React.Component {
                 city,
                 state
             }, function(){
-                const url = `http://localhost:8080/api/darksky?latitude=${this.state.lat}&longitude=${this.state.long}`;
+                const url = `http://localhost:3000/api/darksky?latitude=${this.state.lat}&longitude=${this.state.long}`;
                 callApi(url, null, this._onSuccess, this._onFailure);
             });
         })

@@ -1,6 +1,7 @@
 'use strict';
 let webpack = require('webpack');
 let BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+let CompressionPlugin = require('compression-webpack-plugin');
 let path = require('path');
 
 let config = {
@@ -75,7 +76,14 @@ let config = {
         }),
         new webpack.optimize.DedupePlugin(), //dedupe similar code 
         new webpack.optimize.UglifyJsPlugin(), //minify everything
-        new webpack.optimize.AggressiveMergingPlugin()//Merge chunks 
+        new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks 
+        new CompressionPlugin({  
+          asset: "[path].gz[query]",
+          algorithm: "gzip",
+          test: /\.js$|\.css$|\.html$/,
+          threshold: 10240,
+          minRatio: 0.8
+        })
     ],
     watch: true,
     devtool: "inline-source-map" 

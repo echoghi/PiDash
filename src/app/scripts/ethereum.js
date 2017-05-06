@@ -18,7 +18,7 @@ class Ethereum extends React.Component {
     };
 
     _getPrices() {
-        axios.get("http://localhost:8080/api/crypto?coin=ethereum")
+        axios.get("http://localhost:3000/api/crypto?coin=ethereum")
             .then(res => {
  
                 let data      = res.data[0],
