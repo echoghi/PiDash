@@ -55,7 +55,6 @@ class Ethereum extends React.Component {
         if(this.state.error) {
             return this._renderError();
         }
-        console.log(this.state.data.percent);
         if(parseFloat(this.state.data.percent_change_24h) < 0) {
             colorClass = "change negative";
         } else {
@@ -65,7 +64,7 @@ class Ethereum extends React.Component {
         return (
             <div>
                 <h4 className="ethereum-header">
-                Ethereum
+                {this.state.data.name}
                 </h4>
                 <div className="percent">
                     <span className="price">${this.state.price}</span>
