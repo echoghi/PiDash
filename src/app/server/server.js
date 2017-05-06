@@ -1,5 +1,7 @@
 /** 
- * This is a simple express server, to show how to proxy weather rquest to DarkSky API.
+ * PiDash Server
+ * v2.0.3
+ * 5/6/17
  */
 var express    = require('express');
 var bodyParser = require('body-parser');
@@ -35,11 +37,11 @@ app.get('/api/', function(req, res) {
 
 
 var darkSkyKey = 'c760978036a761dc66bf1a05e6958a09'; 
-
 var url_prefix = 'https://api.darksky.net/forecast/' + darkSkyKey + '/';
+
 app.get('/api/darksky', function(req, res) {
     try {
-        // Retrieves location coordinates (latitude and longitude) from client request query
+        // Retrieves location coordinates from the PiDash weather query
         var coordinates = req.query.latitude + ',' + req.query.longitude;
         var url = url_prefix + coordinates;
         console.log(chalk.green('Fetching '+ url + "..."));
@@ -47,7 +49,7 @@ app.get('/api/darksky', function(req, res) {
         fetch(url)
         .then(function(response) {
             if (response.status != 200) {
-                res.status(response.status).json({'message': 'Negative Response (' + response.status + ') from the Dark Sky server'});
+                res.status(response.status).json({'message': 'Dark Sky server error:' response.status});
             }
             return response.json();
         })
