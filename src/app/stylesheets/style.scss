@@ -95,6 +95,12 @@ html, body, #main {
     &__temp {
         font-size: 60px;  
     }
+    &__icon {
+        width: 60%;
+        height: auto;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
 
 }
 
@@ -208,14 +214,11 @@ html, body, #main {
         }
 
         &__icon {
-            canvas {
-                height: initial;
-                width: initial; 
-            }
+            padding: 60px 0;
         }
 
         &__temp {
-            font-size: 70px;  
+            font-size: 80px;  
         }
     }
     .news-header,
@@ -223,10 +226,12 @@ html, body, #main {
         font-size: 45px;
     }
     .stories {
-        font-size: 17px;
+        height: 110px;
+        font-size: 20px;
+        font-weight: bold;
     }
     .stats > li {
-        font-size: 20px;
+        font-size: 25px;
     }
     .percent {
         font-size: 75px;
