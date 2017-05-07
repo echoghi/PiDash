@@ -16,23 +16,48 @@ html, body, #main {
         position: fixed;
         top: 0;
         left: 0;
-    }
 
-    .reddit {
-        height: 50%;
-        width: 66.7%;
-        position: fixed;
-        color: #FFF;
-        background-color: #016b84;
-        right: 0;
-        top: 0;
+        .weather__stats {
+            height: 50%;
+            width: 33.3%;
+            padding: 15px 20px;
+            font-size: 30px;
+            position: fixed;
+            color: #FFF;
+            background-color: #016b84;
+            right: 33.4%;
+            top: 0;
+            // Weather Stats
+            &--list li {
+                padding: 10px;
+                list-style: none;
+                text-align: left;
+                font-weight: bold;
+            }
+            // Weather forecast
+            &--forecast {
+                position: relative;
+                margin-top: 30%;
+                text-align: left;
 
-        div.reddit-container {
-            height: 90%;
+                &-hour {
+                    display: flex;
+                    justify-content: space-between;
+                    border-top: 1px solid #fff;
+                    padding: 5px;
+                    font-weight: bold;
 
-            img {
-                width: 100%;
-                height: 100%
+                    .hour {
+                       font-size: 40px; 
+                    }
+                    .icon {
+                        width: 30%;
+                        height: auto;
+                    }
+                    .temp {
+                        font-size: 40px; 
+                    }
+                }
             }
         }
     }
@@ -125,14 +150,6 @@ html, body, #main {
     }
 }
 
-.reddit-subhead {
-    height: 10%;
-    font-size: 12px;
-}
-.reddit-photo {
-    display: block;
-}
-
 .news-header {
     font-size: 30px;
     margin-top: 10px;
@@ -219,6 +236,19 @@ html, body, #main {
 
         &__temp {
             font-size: 80px;  
+        }
+    }
+    // Weather forecast
+    .dashboard .weather .weather__stats--forecast-hour {
+        .hour {
+           font-size: 40px; 
+        }
+        .icon {
+            width: 15%;
+            height: auto;
+        }
+        .temp {
+            font-size: 40px; 
         }
     }
     .news-header,

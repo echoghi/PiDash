@@ -19,7 +19,7 @@ class Clock extends React.Component {
         let currentDate     = new Date(),
             date            = currentDate.getDate(),
             time,
-            day             = currentDate.getDay(),
+            dayNum          = currentDate.getDay(),
             monthNum        = currentDate.getMonth(),
             year            = currentDate.getFullYear(),
             currentSec      = currentDate.getSeconds(),
@@ -27,27 +27,22 @@ class Clock extends React.Component {
             currentMin      = currentDate.getMinutes(),
             currentHr       = currentDate.getHours(),
             months          = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
-            days            = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+            days            = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"],
+            month           = months[monthNum],
+            day             = days[dayNum];
 
-            let month = months[monthNum];
-            day   = days[day];
-
-        if (currentHr === 0) { //if midnight (00 hours) hour = 12
+        // Format time
+        if (currentHr === 0) { 
             currentHr = 12;
-        } else if (currentHr >= 13) { //convert military hours at and over 1300 (1pm) to regular hours by subtracting 12. 
+        } else if (currentHr >= 13) { 
             currentHr -= 12;
         }
 
         if (currentMin < 10) {
             currentMin = "0" + currentMin;
         }
-
-
-        if (currentDate.getHours() < 12) {
-            time = currentHr + ':' + currentMin + " AM";
-        } else {
-            time = currentHr + ':' + currentMin + " PM";
-        }
+        // Append AM or PM to times
+        currentDate.getHours() < 12 ? (time = currentHr + ':' + currentMin + " AM") : (time = currentHr + ':' + currentMin + " PM");
 
       this.setState({
                 time,

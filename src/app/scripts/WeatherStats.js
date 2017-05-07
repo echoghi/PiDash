@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class Reddit extends React.Component {
+class WeatherStats extends React.Component {
     constructor() {
         super();
 
@@ -88,7 +88,7 @@ class Reddit extends React.Component {
 
     render() {
         return (
-            <div className="reddit">
+            <div className="weather__stats">
                 {this.state.loading ? this._renderLoading() : this._renderPost()}
             </div>
         );
@@ -96,4 +96,4 @@ class Reddit extends React.Component {
 
 };
 
-export default Reddit;
+export default WeatherStats;

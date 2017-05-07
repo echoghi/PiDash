@@ -23,11 +23,68 @@ class Weather extends React.Component {
         this._onFailure = this._onFailure.bind(this);
 
     }
-    _onSuccess(res) {
-        let data = res,
-            temp = Math.round(res.currently.apparentTemperature) + '°',
-            icon = res.currently.icon;
 
+    _onSuccess(res) {
+        let data     = res,
+            hourly   = [],
+            temp     = Math.round(res.currently.apparentTemperature) + '°',
+            icon     = res.currently.icon,
+            humidity = Math.round(res.currently.humidity * 10) + '%',
+            wind     = Math.round(res.currently.windSpeed * 2.23694) +' MPH';
+            // Get hourly forecast
+            for(var i = 1; i < 4; i++) {
+                hourly[i] = {
+                    time : new Date(1000 * res.hourly.data[i].time).getHours(),
+                    temp : Math.round(res.hourly.data[i].temperature) + '°',
+                    icon : res.hourly.data[i].icon
+                };
+
+                switch (hourly[i].icon) {
+                    case "clear-day":
+                        hourly[i].icon = "CLEAR_DAY";
+                        break;
+                    case "clear-night":
+                        hourly[i].icon = "CLEAR_NIGHT"; 
+                        break;
+                    case "partly-cloudy-day":
+                        hourly[i].icon = "PARTLY_CLOUDY_DAY"; 
+                        break;
+                    case "partly-cloudy-night":
+                        hourly[i].icon = "PARTLY_CLOUDY_NIGHT"; 
+                        break;
+                    case "cloudy":
+                        hourly[i].icon = "CLOUDY"; 
+                        break;
+                    case "rain":
+                        hourly[i].icon = "RAIN"; 
+                        break;
+                    case "sleet":
+                        hourly[i].icon = "SLEET"; 
+                        break;
+                    case "snow":
+                        hourly[i].icon = "SNOW"; 
+                        break;
+                    case "wind":
+                        hourly[i].icon = "WIND"; 
+                        break;
+                    case "fog":
+                        hourly[i].icon = "FOG"; 
+                        break;
+                    default :
+                        hourly[i].icon = "CLEAR_DAY";
+                        break;  
+                }
+                // format time
+                if (hourly[i].time === 0) { 
+                    hourly[i].time = 12;
+                } else if (hourly[i].time >= 13) { 
+                    hourly[i].time -= 12;
+                }
+                // Append AM or PM to forecast times
+                hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time = hourly[i].time + " PM");
+            }
+            console.log(res)
+        // Validate icon strings    
         switch (icon) {
             case "clear-day":
                 icon = "CLEAR_DAY";
@@ -63,13 +120,15 @@ class Weather extends React.Component {
                 icon = "CLEAR_DAY";
                 break;  
         }
-
         // Update state to trigger a re-render.
         // Clear any errors, and turn off the loading indiciator.
         this.setState({
             data,
             temp,
             icon,
+            humidity,
+            wind,
+            hourly,
             loading : false,
             error   : null
         });
@@ -118,15 +177,36 @@ class Weather extends React.Component {
         }
 
         return (
-            <div className="forecast">
-                <div className="forecast__header">
-                    {this.state.city}, {this.state.state}
+            <div className="weather__container">
+                <div className="forecast">
+                    <div className="forecast__header">
+                        {this.state.city}, {this.state.state}
+                    </div>
+                    <div className="forecast__icon">
+                        <Skycons color='white' icon={this.state.icon} autoplay={true} />
+                    </div>
+                    <div className="forecast__temp">
+                        {this.state.temp}
+                    </div>
                 </div>
-                <div className="forecast__icon">
-                    <Skycons color='white' icon={this.state.icon} autoplay={true} />
-                </div>
-                <div className="forecast__temp">
-                    {this.state.temp}
+                <div className="weather__stats">
+                    <ul className="weather__stats--list">
+                        <li>
+                            <span className="list--left" > Humidity: {this.state.humidity} </span>
+                        </li>
+                        <li><span className="list--left">Wind: {this.state.wind}</span></li>
+                    </ul>
+                    <div className="weather__stats--forecast">
+                        {this.state.hourly.map(hour =>
+                            <div className="weather__stats--forecast-hour">
+                                <span className="hour">{hour.time}</span>
+                                <span className="icon">
+                                    <Skycons color='white' icon={hour.icon} autoplay={true} />
+                                </span>
+                                <span className="temp">{hour.temp}</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         );
@@ -161,7 +241,7 @@ class Weather extends React.Component {
     render() {
         return (
             <div className="weather">
-                {this.state.loading ? this._renderLoading() : this._forecast()}
+                {this.state.loading ? this._renderLoading() : this._forecast() }
             </div>
         );
     }
