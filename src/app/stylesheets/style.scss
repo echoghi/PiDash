@@ -272,6 +272,7 @@
 
 // Large Breakpoints first
 @media only screen  and (min-width : 1624px) {
+    // Main Weather Panel
     .forecast {
         &__header {
             font-size: 45px; 
@@ -285,7 +286,7 @@
             font-size: 80px;  
         }
     }
-    // Weather forecast
+    // Weather Status Panel
     .dashboard .weather .weather__stats {
         &--forecast-hour {
             .hour {
@@ -351,6 +352,7 @@
 
 @media only screen  and (min-width : 1324px) and (max-width : 1623px) {
     .dashboard {
+        // Main Weather Panel
         .forecast {
             &__header {
                 font-size: 25px; 
@@ -363,7 +365,7 @@
                 font-size: 60px;  
             }
         }
-        // Weather forecast
+        // Weather Stats Panel
         .weather .weather__stats {
             .weather__stats--list li {
                 font-size: 25px;
