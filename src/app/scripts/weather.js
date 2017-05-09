@@ -17,7 +17,7 @@ class Weather extends React.Component {
             icon       : "",
             humidity   : 0,
             dewpoint   : 0,
-            visibility : 0,
+            visibility : "",
             loading    : true,
             error      : null
         };
@@ -43,7 +43,7 @@ class Weather extends React.Component {
                     temp : Math.round(res.hourly.data[i].temperature) + '°',
                     icon : res.hourly.data[i].icon
                 };
-                console.log(new Date(1000 * res.hourly.data[i].time).getHours())
+
                 switch (hourly[i].icon) {
                     case "clear-day":
                         hourly[i].icon = "CLEAR_DAY";
@@ -122,7 +122,6 @@ class Weather extends React.Component {
                 icon = "CLEAR_DAY";
                 break;  
         }
-        console.log(visibility)
         // Update state to trigger a re-render.
         // Clear any errors, and turn off the loading indiciator.
         this.setState({
@@ -210,7 +209,7 @@ class Weather extends React.Component {
                         </li>
                         <li>
                             <span>Visibility</span>
-                            <span>{this.state.visibilty}</span>
+                            <span>{this.state.visibility}</span>
                         </li>
                     </ul>
                     <div className="weather__stats--forecast">
