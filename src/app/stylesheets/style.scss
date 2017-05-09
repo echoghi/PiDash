@@ -19,13 +19,13 @@ html, body, #main {
 
         .weather__stats {
             height: 50%;
-            width: 33.3%;
+            width: 33.4%;
             padding: 15px 20px;
             font-size: 30px;
             position: fixed;
             color: #FFF;
             background-color: #016b84;
-            right: 33.4%;
+            right: 33.3%;
             top: 0;
             // Weather Stats
             &--list {
@@ -42,8 +42,9 @@ html, body, #main {
             }
             // Weather forecast
             &--forecast {
-                position: relative;
-                margin-top: 25%;
+                position: absolute;
+                width: 93%;
+                bottom: 15px;
                 text-align: left;
 
                 &-hour {
@@ -67,6 +68,32 @@ html, body, #main {
         }
     }
 
+    .commute {
+        height: 50%;
+        width: 33.3%;
+        position: fixed;
+        background: #0097C3;
+        color: #FFF;
+        top: 0;
+        right: 0;
+
+        &__container {
+            padding: 100px 15px;
+
+            .commute__time {
+                font-size: 80px;
+                font-weight: bold;
+            }
+            .commute__header {
+                display: block;
+            }
+            .commute__subhead {
+                display: block;
+                font-size: 60px;
+            }
+        }    
+    }
+
     .news {
         height: 50%;
         width: 33.3%;
@@ -85,13 +112,21 @@ html, body, #main {
         background: #00A4D3;
         right: 33.3%;
         bottom: 0%;
+
+        .stats {
+            padding: 15px;
+            li {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     }
 
     .clock {
         height: 50%;
         width: 33.3%;
         position: fixed;
-        padding: 100px 0;
+        padding: 150px 15px;
         color: #FFF;
         font-weight: bold;
         background: #00596E;
@@ -112,17 +147,22 @@ html, body, #main {
 
 .forecast {
     width: 100%;
+    padding: 15px;
     font-weight: bold;
     color: #fff;
     text-align: center;
     height: 98%;
 
     &__header {
-        padding: 20px 0;
         font-size: 25px; 
     }
 
     &__temp {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 15px;
         font-size: 60px;  
     }
     &__icon {
@@ -236,7 +276,7 @@ html, body, #main {
         }
 
         &__icon {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
         &__temp {
@@ -245,9 +285,6 @@ html, body, #main {
     }
     // Weather forecast
     .dashboard .weather .weather__stats {
-        &--forecast {
-            margin-top: 30%;
-        }
         &--forecast-hour {
             .hour {
                font-size: 40px; 
@@ -260,6 +297,10 @@ html, body, #main {
                 font-size: 40px; 
             }
         }
+    }
+    // Commute info
+    .dashboard .commute__container {
+        padding: 175px 15px;
     }
     .news-header,
     .ethereum-header {
@@ -280,25 +321,29 @@ html, body, #main {
         height: 170px;
         width: 170px;
     }
-    .dashboard .clock .night {
-        top: 10%;
+    .dashboard .clock {
+        padding: 175px 15px;
 
-        img {
-            height: 200px;
-            width: 200px;
-        }
-    }
-    .dashboard .clock .day {
-        top: 7%; 
+        .day {
+            top: 7%; 
 
-        img { 
-            height: 200px;
-            width: 200px;
+            img { 
+                height: 200px;
+                width: 200px;
+            }
         }
-    }
-    .dashboard .clock .time {
-        font-size: 80px;
-        margin-top: 10px;
+        .night {
+            top: 10%;
+
+            img {
+                height: 200px;
+                width: 200px;
+            }
+        }
+        .time {
+            font-size: 80px;
+            margin-top: 10px;
+        }
     }
 }
 

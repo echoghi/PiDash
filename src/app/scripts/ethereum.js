@@ -71,11 +71,19 @@ class Ethereum extends React.Component {
                     <span className={colorClass}>({parseFloat(this.state.data.percent_change_24h)}%)</span>
                 </div>
                 <ul className="stats">
-                    <li>Market Capitalization: ${this.state.marketCap}</li>
-                    <li>Available Supply: {this.state.supply} {this.state.symbol}</li>
-                    <li>{this.state.symbol}/BTC: {this.state.btc} BTC</li>
-                </ul>
-                <img className="eth" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/ETHEREUM-YOUTUBE-PROFILE-PIC.png" />            
+                    <li>
+                        <span>Market Capitalization</span>
+                        <span>${this.state.marketCap}</span>
+                    </li>
+                    <li>
+                        <span>Available Supply</span>
+                        <span>{this.state.supply} {this.state.symbol}</span>
+                    </li>
+                    <li>
+                        <span>{this.state.symbol}/BTC</span>
+                        <span>{this.state.btc} BTC </span>
+                    </li>
+                </ul>            
             </div>
         );
     }

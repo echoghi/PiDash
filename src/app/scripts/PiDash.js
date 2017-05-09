@@ -1,6 +1,7 @@
 import React from 'react';
 // Components
 import Weather from './weather';
+import Commute from './commute';
 import Clock from './clock';
 import Ethereum from './ethereum';
 import News from './news';
@@ -22,6 +23,7 @@ class PiDash extends React.Component {
 		return (
 			<div className="dashboard">
 				<Weather />
+				<Commute />
 				<News />
 				<Ethereum />
 				<Clock />

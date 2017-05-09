@@ -86,6 +86,33 @@ app.get('/api/crypto', function(req, res) {
     }
 });
 
+var GPS = "37.4419 -122.143";
+var url_prefix3 = "https://maps.googleapis.com/maps/api/directions/json?origin=" + GPS + "&destination=21269+Stevens+Creek+Blvd,+Cupertino,+CA+95014";
+var mapsKey = "AIzaSyD2wLZNp2sbuJNJcACtsvNsTIDfh_TDCFA";
+app.get('/api/commute', function(req, res) {
+    try {
+        // Retrieves location coordinates (latitude and longitude) from client request query
+        var coin = req.query.coin;
+        var url  = url_prefix3;
+
+        console.log(chalk.green('Fetching '+ url + "..."));
+
+        fetch(url)
+        .then(function(response) {
+            if (response.status != 200) {
+                res.status(response.status).json({'message': 'Google Maps server error:' + response.status});
+            }
+            return response.json();
+        })
+        .then(function(payload) {
+            res.status(200).json(payload);
+        });
+    } catch(err) {
+        console.log(chalk.red("Error occured requesting the Google Maps API:", err));
+        res.status(500).json({'message': 'Error occured requesting the Google Maps API', 'details' : err});
+    }
+});
+
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');

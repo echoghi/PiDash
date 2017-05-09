@@ -83,7 +83,6 @@ class Weather extends React.Component {
                 // Append AM or PM to forecast times
                 hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time = hourly[i].time + " PM");
             }
-            console.log(res)
         // Validate icon strings    
         switch (icon) {
             case "clear-day":
