@@ -288,6 +288,12 @@
     }
     // Weather Status Panel
     .dashboard .weather .weather__stats {
+        &--list li {
+            padding: 5px 0;
+        }
+        &--forecast {
+            width: 95.5%;
+        }
         &--forecast-hour {
             .hour {
                font-size: 40px; 
@@ -369,6 +375,7 @@
         .weather .weather__stats {
             .weather__stats--list li {
                 font-size: 25px;
+                padding: 2.5px 0;
             }
             &--forecast {
                 bottom: 5px;
