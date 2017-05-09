@@ -8,15 +8,18 @@ class Weather extends React.Component {
         super();
 
         this.state = {
-            data     : [],
-            city     : "",
-            state    : "",
-            lat      : 0,
-            long     : 0,
-            temp     : 0,
-            icon     : "",
-            loading  : true,
-            error    : null
+            data       : [],
+            city       : "",
+            state      : "",
+            lat        : 0,
+            long       : 0,
+            temp       : 0,
+            icon       : "",
+            humidity   : 0,
+            dewpoint   : 0,
+            visibility : 0,
+            loading    : true,
+            error      : null
         };
 
         this._onSuccess = this._onSuccess.bind(this);
@@ -25,12 +28,14 @@ class Weather extends React.Component {
     }
 
     _onSuccess(res) {
-        let data     = res,
-            hourly   = [],
-            temp     = Math.round(res.currently.apparentTemperature) + '°',
-            icon     = res.currently.icon,
-            humidity = Math.round(res.currently.humidity * 10) + '%',
-            wind     = Math.round(res.currently.windSpeed * 2.23694) +' MPH';
+        let data       = res,
+            hourly     = [],
+            temp       = Math.round(res.currently.apparentTemperature) + '°',
+            icon       = res.currently.icon,
+            humidity   = Math.round(res.currently.humidity * 10) + '%',
+            dewpoint   = Math.round(res.currently.dewPoint) + '°',
+            visibility = Math.round(res.currently.visibility * 0.621371) + ' miles',
+            wind       = Math.round(res.currently.windSpeed * 2.23694) + ' MPH';
             // Get hourly forecast
             for(var i = 1; i < 4; i++) {
                 hourly[i] = {
@@ -38,7 +43,7 @@ class Weather extends React.Component {
                     temp : Math.round(res.hourly.data[i].temperature) + '°',
                     icon : res.hourly.data[i].icon
                 };
-
+                console.log(new Date(1000 * res.hourly.data[i].time).getHours())
                 switch (hourly[i].icon) {
                     case "clear-day":
                         hourly[i].icon = "CLEAR_DAY";
@@ -74,14 +79,12 @@ class Weather extends React.Component {
                         hourly[i].icon = "CLEAR_DAY";
                         break;  
                 }
+                // Append AM or PM to forecast times
+                hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time -= 12, hourly[i].time = hourly[i].time + " PM");
                 // format time
                 if (hourly[i].time === 0) { 
-                    hourly[i].time = 12;
-                } else if (hourly[i].time >= 13) { 
-                    hourly[i].time -= 12;
+                    hourly[i].time = 12 + " AM";
                 }
-                // Append AM or PM to forecast times
-                hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time = hourly[i].time + " PM");
             }
         // Validate icon strings    
         switch (icon) {
@@ -119,6 +122,7 @@ class Weather extends React.Component {
                 icon = "CLEAR_DAY";
                 break;  
         }
+        console.log(visibility)
         // Update state to trigger a re-render.
         // Clear any errors, and turn off the loading indiciator.
         this.setState({
@@ -126,6 +130,8 @@ class Weather extends React.Component {
             temp,
             icon,
             humidity,
+            dewpoint,
+            visibility,
             wind,
             hourly,
             loading : false,
@@ -191,12 +197,20 @@ class Weather extends React.Component {
                 <div className="weather__stats">
                     <ul className="weather__stats--list">
                         <li>
-                            <span className="list--left" >Humidity</span>
-                            <span className="list--right" >{this.state.humidity} </span>
+                            <span>Humidity</span>
+                            <span>{this.state.humidity}</span>
                         </li>
                         <li>
-                            <span className="list--left">Wind</span>
-                            <span className="list--right">{this.state.wind}</span>
+                            <span>Wind</span>
+                            <span>{this.state.wind}</span>
+                        </li>
+                        <li>
+                            <span>Dewpoint</span>
+                            <span>{this.state.dewpoint}</span>
+                        </li>
+                        <li>
+                            <span>Visibility</span>
+                            <span>{this.state.visibilty}</span>
                         </li>
                     </ul>
                     <div className="weather__stats--forecast">

@@ -20,7 +20,7 @@ html, body, #main {
         .weather__stats {
             height: 50%;
             width: 33.4%;
-            padding: 15px 20px;
+            padding: 15px;
             font-size: 30px;
             position: fixed;
             color: #FFF;
@@ -34,7 +34,7 @@ html, body, #main {
                 li {
                     display: flex;
                     justify-content: space-between;
-                    padding: 10px 0;
+                    padding: 5px 0;
                     list-style: none;
                     text-align: left;
                     font-weight: bold;
@@ -118,6 +118,10 @@ html, body, #main {
             li {
                 display: flex;
                 justify-content: space-between;
+
+                span:first-child {
+                    color: #00596E;
+                }
             }
         }
     }
