@@ -116,12 +116,9 @@ html, body, #main {
         .stats {
             padding: 15px;
             li {
+                font-size: 30px;
                 display: flex;
                 justify-content: space-between;
-
-                span:first-child {
-                    color: #00596E;
-                }
             }
         }
     }
