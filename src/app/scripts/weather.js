@@ -192,9 +192,13 @@ class Weather extends React.Component {
                 <div className="weather__stats">
                     <ul className="weather__stats--list">
                         <li>
-                            <span className="list--left" > Humidity: {this.state.humidity} </span>
+                            <span className="list--left" >Humidity</span>
+                            <span className="list--right" >{this.state.humidity} </span>
                         </li>
-                        <li><span className="list--left">Wind: {this.state.wind}</span></li>
+                        <li>
+                            <span className="list--left">Wind</span>
+                            <span className="list--right">{this.state.wind}</span>
+                        </li>
                     </ul>
                     <div className="weather__stats--forecast">
                         {this.state.hourly.map(hour =>

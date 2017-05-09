@@ -28,16 +28,22 @@ html, body, #main {
             right: 33.4%;
             top: 0;
             // Weather Stats
-            &--list li {
-                padding: 10px;
-                list-style: none;
-                text-align: left;
-                font-weight: bold;
+            &--list {
+                padding-left: 0;
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 10px 0;
+                    list-style: none;
+                    text-align: left;
+                    font-weight: bold;
+                } 
             }
             // Weather forecast
             &--forecast {
                 position: relative;
-                margin-top: 30%;
+                margin-top: 25%;
                 text-align: left;
 
                 &-hour {
@@ -50,8 +56,8 @@ html, body, #main {
                        font-size: 40px; 
                     }
                     .icon {
-                        width: 25%;
-                        height: 100%;
+                        width: 20%;
+                        height: 80%;
                     }
                     .temp {
                         font-size: 40px; 
@@ -238,16 +244,21 @@ html, body, #main {
         }
     }
     // Weather forecast
-    .dashboard .weather .weather__stats--forecast-hour {
-        .hour {
-           font-size: 40px; 
+    .dashboard .weather .weather__stats {
+        &--forecast {
+            margin-top: 30%;
         }
-        .icon {
-            width: 15%;
-            height: auto;
-        }
-        .temp {
-            font-size: 40px; 
+        &--forecast-hour {
+            .hour {
+               font-size: 40px; 
+            }
+            .icon {
+                width: 15%;
+                height: 80%;
+            }
+            .temp {
+                font-size: 40px; 
+            }
         }
     }
     .news-header,
