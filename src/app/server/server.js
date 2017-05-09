@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/api/', function(req, res) {
-    res.json({ message: 'Hi, welcome to the PiDash API' });   
+    res.json({ message: 'Welcome to the PiDash API' });   
 });
 
 
@@ -49,7 +49,7 @@ app.get('/api/darksky', function(req, res) {
         fetch(url)
         .then(function(response) {
             if (response.status != 200) {
-                res.status(response.status).json({'message': 'Dark Sky server error:' response.status});
+                res.status(response.status).json({'message': 'Dark Sky server error:' + response.status});
             }
             return response.json();
         })
@@ -73,7 +73,7 @@ app.get('/api/crypto', function(req, res) {
         fetch(url)
         .then(function(response) {
             if (response.status != 200) {
-                res.status(response.status).json({'message': 'Negative Response (' + response.status + ') from the CoinMarketCap server'});
+                res.status(response.status).json({'message': 'Coin Market Cap server error:' + response.status});
             }
             return response.json();
         })
