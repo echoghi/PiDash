@@ -72,11 +72,11 @@ class Ethereum extends React.Component {
                 </div>
                 <ul className="stats">
                     <li>
-                        <span>Market Capitalization</span>
+                        <span>Market Cap.</span>
                         <span>${this.state.marketCap}</span>
                     </li>
                     <li>
-                        <span>Available Supply</span>
+                        <span>Supply</span>
                         <span>{this.state.supply} {this.state.symbol}</span>
                     </li>
                     <li>

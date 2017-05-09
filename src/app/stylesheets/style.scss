@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 
-html, body, #main {
+#main {
   text-align: center;
   height: 100%;
-  font-family: Raleway;
 }
 
 .dashboard {
     height: 100%;
-
+    font-family: Raleway;
+    // Main Weather Panel
     .weather {
         height: 50%;
         background: #0097C3;
@@ -16,7 +17,7 @@ html, body, #main {
         position: fixed;
         top: 0;
         left: 0;
-
+        // Weather Stats Panel
         .weather__stats {
             height: 50%;
             width: 33.4%;
@@ -27,7 +28,7 @@ html, body, #main {
             background-color: #016b84;
             right: 33.3%;
             top: 0;
-            // Weather Stats
+    
             &--list {
                 padding-left: 0;
 
@@ -115,6 +116,7 @@ html, body, #main {
 
         .stats {
             padding: 15px;
+
             li {
                 font-size: 30px;
                 display: flex;
@@ -170,7 +172,7 @@ html, body, #main {
         width: 60%;
         height: auto;
         margin: 0 auto;
-        padding: 30px 0;
+        padding: 50px 0;
     }
 
 }
@@ -348,50 +350,87 @@ html, body, #main {
     }
 }
 
-@media only screen  and (min-width : 1324px) and (max-width : 1623px){
-    .forecast {
-        &__header {
-            font-size: 25px; 
-        }
-
-        &__temp {
-            font-size: 60px;  
-        }
-    }
-    .stories {
-        font-size: 15.5px;
-    }
-    .dashboard .clock .night {
-        top: 10%;
-
-        img {
-            height: 180px;
-            width: 180px;
-        }
-    }
+@media only screen  and (min-width : 1324px) and (max-width : 1623px) {
     .dashboard {
+        .forecast {
+            &__header {
+                font-size: 25px; 
+            }
+            &__icon {
+                padding: 70px 0;
+            }
+
+            &__temp {
+                font-size: 60px;  
+            }
+        }
+        // Weather forecast
+        .weather .weather__stats {
+            .weather__stats--list li {
+                font-size: 25px;
+            }
+            &--forecast {
+                bottom: 10px;
+            }
+            &--forecast-hour {
+                .hour,
+                .temp {
+                   font-size: 30px; 
+                }
+                .icon {
+                    height: 60%;
+                }
+            }
+
+        }
+        .stories {
+            font-size: 15.5px;
+        }
+        // Clock Panel
+        .clock {
+            .night {
+                top: 10%;
+
+                img {
+                    height: 180px;
+                    width: 180px;
+                }
+            }
+            .day {
+                top: 7%; 
+
+                img { 
+                    height: 200px;
+                    width: 200px;
+                }
+            }
+            .time {
+                font-size: 75px;
+                margin-top: 0;
+            }
+        }
+
         .weather,
         .news {
             width: 33.4%
         }
-    }
-    .dashboard .clock .day {
-        top: 7%; 
 
-        img { 
-            height: 200px;
-            width: 200px;
+        .ethereum {
+            .stats {                
+                li {
+                    font-size: 25px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
         }
-    }
-    .eth {
-        height: 150px;
-        width: 150px;
-    }
-    .percent {
-        font-size: 50px;
-    }
-    .dashboard .clock .time {
-        font-size: 75px;
-        margin-top: 0;
+
+        .eth {
+            height: 150px;
+            width: 150px;
+        }
+        .percent {
+            font-size: 50px;
+        }
     }
 }
