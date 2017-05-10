@@ -4,7 +4,8 @@
   "description": "A dashboard app for Raspberry pi",
   "scripts": {
     "watch": "webpack-dev-server --hot",
-    "build": "SET NODE_ENV=production webpack -p --config webpack.config.js && webpack"
+    "build": "SET NODE_ENV=production webpack -p --config webpack.config.js && webpack",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git"
@@ -16,7 +17,11 @@
     "flexbox": "0.0.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-skycons": "^0.3.0"
+    "react-skycons": "^0.3.0",
+    "express": "^4.14.0",
+    "body-parser": "^1.16.0",
+    "isomorphic-fetch": "^2.2.1",
+    "es6-promise": "^4.0.5"
   },
   "devDependencies": {
     "babel": "^6.23.0",
