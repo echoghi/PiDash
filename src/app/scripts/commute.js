@@ -52,7 +52,7 @@ class Commute extends React.Component {
                 <div className="commute__time">
                     <span className="commute__header">{this.state.duration}</span>
                     <span className="commute__subhead">to work</span>
-                </div>            
+                </div>   
             </div>
         );
     }
