@@ -17,7 +17,7 @@ class Commute extends React.Component {
     _getData() {
         axios.get("http://localhost:3000/api/commute")
             .then(res => {
- 
+
                 let data     = res.data,
                     distance = data.routes[0].legs[0].distance.text,
                     duration = data.routes[0].legs[0].duration.text;
@@ -76,7 +76,7 @@ class Commute extends React.Component {
     componentDidMount() {
         let timeUpdate = setInterval(() => {
             this._getData();
-        }, 10000);
+        }, 60000);
     }
 
     componentWillUnmount() {
