@@ -22,71 +22,12 @@ class Weather extends React.Component {
             error      : null
         };
 
+        this._formatIcon = this._formatIcon.bind(this);
         this._onSuccess = this._onSuccess.bind(this);
         this._onFailure = this._onFailure.bind(this);
-
     }
 
-    _onSuccess(res) {
-        let data       = res,
-            hourly     = [],
-            temp       = Math.round(res.currently.apparentTemperature) + '°',
-            icon       = res.currently.icon,
-            humidity   = Math.round(res.currently.humidity * 10) + '%',
-            dewpoint   = Math.round(res.currently.dewPoint) + '°',
-            visibility = Math.round(res.currently.visibility * 0.621371) + ' miles',
-            wind       = Math.round(res.currently.windSpeed * 2.23694) + ' MPH';
-            // Get hourly forecast
-            for(var i = 1; i < 4; i++) {
-                hourly[i] = {
-                    time : new Date(1000 * res.hourly.data[i].time).getHours(),
-                    temp : Math.round(res.hourly.data[i].temperature) + '°',
-                    icon : res.hourly.data[i].icon
-                };
-
-                switch (hourly[i].icon) {
-                    case "clear-day":
-                        hourly[i].icon = "CLEAR_DAY";
-                        break;
-                    case "clear-night":
-                        hourly[i].icon = "CLEAR_NIGHT"; 
-                        break;
-                    case "partly-cloudy-day":
-                        hourly[i].icon = "PARTLY_CLOUDY_DAY"; 
-                        break;
-                    case "partly-cloudy-night":
-                        hourly[i].icon = "PARTLY_CLOUDY_NIGHT"; 
-                        break;
-                    case "cloudy":
-                        hourly[i].icon = "CLOUDY"; 
-                        break;
-                    case "rain":
-                        hourly[i].icon = "RAIN"; 
-                        break;
-                    case "sleet":
-                        hourly[i].icon = "SLEET"; 
-                        break;
-                    case "snow":
-                        hourly[i].icon = "SNOW"; 
-                        break;
-                    case "wind":
-                        hourly[i].icon = "WIND"; 
-                        break;
-                    case "fog":
-                        hourly[i].icon = "FOG"; 
-                        break;
-                    default :
-                        hourly[i].icon = "CLEAR_DAY";
-                        break;  
-                }
-                // Append AM or PM to forecast times
-                hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time -= 12, hourly[i].time = hourly[i].time + " PM");
-                // format time
-                if (hourly[i].time === "0 AM") { 
-                    hourly[i].time = 12 + " AM";
-                }
-            }
-        // Validate icon strings    
+    _formatIcon(icon) {
         switch (icon) {
             case "clear-day":
                 icon = "CLEAR_DAY";
@@ -122,6 +63,41 @@ class Weather extends React.Component {
                 icon = "CLEAR_DAY";
                 break;  
         }
+
+        return icon;
+    }
+
+    _onSuccess(res) {
+        let data       = res,
+            hourly     = [],
+            temp       = Math.round(res.currently.apparentTemperature) + '°',
+            icon       = res.currently.icon,
+            humidity   = Math.round(res.currently.humidity * 10) + '%',
+            dewpoint   = Math.round(res.currently.dewPoint) + '°',
+            visibility = Math.round(res.currently.visibility * 0.621371) + ' miles',
+            wind       = Math.round(res.currently.windSpeed * 2.23694) + ' MPH';
+            // Get hourly forecast
+            for(var i = 1; i < 4; i++) {
+                hourly[i] = {
+                    time : new Date(1000 * res.hourly.data[i].time).getHours(),
+                    temp : Math.round(res.hourly.data[i].temperature) + '°',
+                    icon : res.hourly.data[i].icon
+                };
+                // Convert Icon names to the correct format
+                hourly[i].icon = this._formatIcon(icon);
+
+                // Append AM or PM to forecast times
+                hourly[i].time < 12 ? (hourly[i].time = hourly[i].time + " AM") : (hourly[i].time -= 12, hourly[i].time = hourly[i].time + " PM");
+                // format time
+                if (hourly[i].time === "0 AM") { 
+                    hourly[i].time = 12 + " AM";
+                } else if (hourly[i].time === "0 PM") { 
+                    hourly[i].time = 12 + " PM";
+                }
+            }
+        // Convert Icon names to the correct format
+        icon = this._formatIcon(icon);
+
         // Update state to trigger a re-render.
         // Clear any errors, and turn off the loading indiciator.
         this.setState({
